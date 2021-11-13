@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-white w-screen 2xl:w-96 2xl:min-h-screen fixed p-4 pb-0 2xl:px-6 2xl:py-10 z-50">
+  <nav class="bg-white w-screen 2xl:w-96 2xl:h-screen fixed p-4 pb-0 2xl:px-6 2xl:py-10 z-50">
     <div class="top border-b border-black border-opacity-10 2xl:hidden flex items-center pb-4">
       <div
         class="
@@ -38,15 +38,14 @@
       />
       <hr class="border-black border-opacity-10" />
       <h4 class="font-bold text-left text-lg my-6 leading-6">精選主題</h4>
-      <ul class="flex flex-wrap">
+      <ul class="grid grid-cols-2 gap-2">
         <li
           class="
-            w-1/2
+            col-span-1
             py-2
             text-center
             flex flex-col
             items-center
-            mb-3
             rounded-lg
             border border-transparent
             hover:border-green-50
@@ -57,10 +56,10 @@
           :key="category.name"
         >
           <div
-            class="img-bg rounded-full w-20 h-20 flex justify-center items-center"
+            class="img-bg rounded-full w-10 h-10 max-h-20 max-w-20 flex justify-center items-center"
             :class="`bg-${category.bgColor}`"
           >
-            <i class="twicon-3x text-white" :class="`twicon-${category.icon}`"></i>
+            <i class="twicon-2x text-white" :class="`twicon-${category.icon}`"></i>
           </div>
           <p>{{ category.name }}</p>
         </li>

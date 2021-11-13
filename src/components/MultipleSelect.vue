@@ -14,7 +14,7 @@
       @blur="open = false"
     >
       <div
-        class="selected flex items-start p-3 justify-between bg-white"
+        class="selected flex items-start p-3 justify-between bg-white turncate"
         :style="{ width: `${selectWidth}px`, height: `${selectHeight}px` }"
         @click="openSelectOption()"
       >

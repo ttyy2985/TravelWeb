@@ -9,13 +9,15 @@
       <a class="more text-base text-green-50 cursor-pointer" v-if="title"> 更多{{ title }} </a>
     </div>
     <div class="article-content grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4 2xl:gap-6">
-      <Card v-for="content in contents" :content="content" :key="content.title" />
+      <Card v-for="content in contents" :content="content" :key="content.ID" />
     </div>
   </div>
 </template>
 
 <script>
 import Card from "@/components/Card.vue";
+import api from "@/api";
+
 export default {
   name: "ArticleSection",
   components: {
@@ -31,46 +33,28 @@ export default {
       default: "",
     },
     subtitle: String,
+    options: {
+      type: Object,
+    },
+    category: String,
   },
   data() {
     return {
-      info: {
-        time: "343434",
-        location: "errtr",
-      },
-      contents: [
-        {
-          title: "天長地久",
-          info: {
-            time: "wewew",
-            location: "wewe",
-            calling: "0954544",
-          },
-          photo:
-            "https://images.unsplash.com/photo-1599420186946-7b6fb4e297f0?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80",
-        },
-        {
-          title: "天長地久",
-          info: {
-            time: "wewew",
-            location: "wewe",
-            calling: "0954544",
-          },
-          photo:
-            "https://images.unsplash.com/photo-1599420186946-7b6fb4e297f0?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80",
-        },
-        {
-          title: "天長地久",
-          info: {
-            time: "wewew",
-            location: "wewe",
-            calling: "0954544",
-          },
-          photo:
-            "https://images.unsplash.com/photo-1599420186946-7b6fb4e297f0?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80",
-        },
-      ],
+      contents: [],
     };
+  },
+  async mounted() {
+    await this.getData(this.options);
+  },
+  methods: {
+    async getData(options = "") {
+      const ApiName = this.category.toLowerCase();
+      const method = `get${this.category}`;
+      let data = await api[ApiName][method]({
+        params: options || { $top: 3 },
+      });
+      this.contents = data;
+    },
   },
 };
 </script>

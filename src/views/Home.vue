@@ -1,9 +1,9 @@
 <template>
   <div class="home">
     <Banner />
-    <ArticleSetion iconName="location_purple" title="熱門景點" />
-    <ArticleSetion iconName="location_purple" title="美食品嘗" />
-    <ArticleSetion iconName="" subtitle="住宿推薦" />
+    <ArticleSetion category="ScenicSpot" iconName="location_purple" title="熱門景點" />
+    <ArticleSetion category="Restaurant" iconName="location_purple" title="美食品嘗" />
+    <ArticleSetion category="Hotel" iconName="location_purple" title="住宿推薦" />
   </div>
 </template>
 
