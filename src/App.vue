@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="bg-gray-50">
     <Sidebar />
-    <div class="2xl:ml-384 p-6">
+    <div class="2xl:ml-384 p-6 pt-28 2xl:pt-6">
       <router-view />
     </div>
   </div>

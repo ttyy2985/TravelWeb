@@ -47,9 +47,9 @@ export default {
     info() {
       const infoTag = ["Phone", "Address", "OpenTime", "TicketInfo"];
       const vm = this;
-      console.log(this.content);
+      // console.log(this.content);
       return Object.keys(this.content).reduce(function (infos, option) {
-        console.log(option, infos, "rtreter");
+        // console.log(option, infos, "rtreter");
         if (infoTag.indexOf(option) > -1) {
           infos[option] = vm.content[option];
         }
@@ -58,9 +58,17 @@ export default {
     },
   },
   methods: {
-    toDetailPage() {},
+    toDetailPage() {
+      // console.log("1212");
+      sessionStorage.setItem("info", JSON.stringify(this.content));
+      if (this.$route.name != "Detail") {
+        this.$router.push({ name: "Detail", params: { id: this.content.ID } });
+      } else {
+        this.$emit("refresh", this.content.ID);
+      }
+    },
     share() {
-      console.log("share", encodeURIComponent(window.location.href));
+      // console.log("share", encodeURIComponent(window.location.href));
       window.open(
         `https://lineit.line.me/share/ui?url=${encodeURIComponent(window.location.href)}`
       );

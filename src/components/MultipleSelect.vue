@@ -14,20 +14,20 @@
       @blur="open = false"
     >
       <div
-        class="selected flex items-start p-3 justify-between bg-white turncate"
+        class="selected flex items-start p-2 justify-between bg-white turncate"
         :style="{ width: `${selectWidth}px`, height: `${selectHeight}px` }"
         @click="openSelectOption()"
       >
-        <div class="selected-area flex flex-wrap w-3/4" v-if="selected.length">
+        <div class="selected-area flex flex-wrap w-5/6" v-if="selected.length">
           <div
-            class="whitespace-no-wrap rounded-lg flex items-center mr-5"
+            class="whitespace-no-wrap rounded-lg flex items-center mr-2"
             v-for="item in selected"
             :key="item.val"
             @click.stop="updateValue(item)"
           >
-            {{ item.val }}
+            {{ item.name }}
             <div class="icon flex items-center justify-center">
-              <icon class="w-3 h-3 ml-3" iconName="Vector"></icon>
+              <icon class="w-3 h-3 ml-2" iconName="Vector"></icon>
             </div>
           </div>
         </div>
@@ -41,7 +41,7 @@
         ></icon>
       </div>
       <div
-        class="items grid grid-cols-3 p-3 gap-6"
+        class="items grid grid-cols-2 md:grid-cols-7 2xl:grid-cols-2 p-3 gap-6"
         :class="{ selectHide: !open }"
         style="max-height: 200px"
       >
@@ -100,7 +100,7 @@ export default {
       default: 0,
     },
     value: {
-      type: Array, // object {name: '選項名', val: '選項值'}
+      type: [String, Array], // object {name: '選項名', val: '選項值'}
       required: true,
     },
     options: {
@@ -133,15 +133,15 @@ export default {
     },
     updateValue(selected) {
       const data = this.value;
-      console.log(selected);
+      // console.log(selected);
       const index = this.value.findIndex((item) => item.val == selected.val);
-      console.log(index);
-      if (index < 0) {
-        data.push(selected);
-      } else {
-        data.splice(index, 1);
-      }
-      console.log(data);
+      // console.log(index);
+      // if (index < 0) {
+      //   data.push(selected);
+      // } else {
+      data.splice(index, 1, selected);
+      // }
+      // console.log(data);
       this.$emit("input", data);
     },
   },

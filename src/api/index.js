@@ -66,27 +66,35 @@ function errorHandler(error) {
 
 const scenicspot = {
   // 取得餐廳
-  getScenicSpot(form) {
-    return axios.get(url.scenicSpot.getScenicSpots, form).then((response) => response.data);
+  getScenicSpot(form, city = "") {
+    return axios
+      .get(`${url.scenicSpot.getScenicSpots}${city ? `/${city}` : ""}`, form)
+      .then((response) => response.data);
   },
 };
 
 const restaurant = {
   // 取得餐廳
-  getRestaurant(form) {
-    return axios.get(url.restaurant.getRestaurants, form).then((response) => response.data);
+  getRestaurant(form, city = "") {
+    return axios
+      .get(`${url.restaurant.getRestaurants}${city ? `/${city}` : ""}`, form)
+      .then((response) => response.data);
   },
 };
 
 const hotel = {
-  getHotel(form) {
-    return axios.get(url.hotel.getHotels, form).then((response) => response.data);
+  getHotel(form, city = "") {
+    return axios
+      .get(`${url.hotel.getHotels}${city ? `/${city}` : ""}`, form)
+      .then((response) => response.data);
   },
 };
 
 const activity = {
-  getActivitiy(form) {
-    return axios.get(url.activity.getActivities, form).then((response) => response);
+  getActivitiy(form, city = "") {
+    return axios
+      .get(`${url.activity.getActivitiys}${city ? `/${city}` : ""}`, form)
+      .then((response) => response.data);
   },
 };
 

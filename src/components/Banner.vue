@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: "Home",
+  name: "Banner",
   computed: {
     bgSize() {
       if (this.$root.windowWidth > 768) return "xl";
